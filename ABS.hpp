@@ -35,9 +35,145 @@ public:
 
     T pop() override;
 
+    void PrintForward();
+    void PrintReverse();
+
 private:
     size_t capacity_;
     size_t curr_size_;
     T* array_;
     static constexpr size_t scale_factor_ = 2;
 };
+
+template<typename T>
+ABS<T>::ABS() {
+    capacity_ = 1;
+    curr_size_ = 0;
+    array_ = new T[capacity_];
+}
+
+template<typename T>
+ABS<T>::ABS(const size_t capacity) {
+    capacity_ = capacity;
+    curr_size_ = 0;
+    array_ = new T[capacity_];
+}
+
+template<typename T>
+ABS<T>::ABS(const ABS& other) {
+    capacity_ = other.capacity_;
+    curr_size_ = other.curr_size_;
+    array_ = new T[capacity_];
+    for (size_t i = 0; i < curr_size_; i++) {
+        array_[i] = other.array_[i];
+    }
+}
+
+template<typename T>
+ABS<T>& ABS<T>::operator=(const ABS<T>& rhs) {
+    if (this == &rhs) {
+        return *this;
+    }
+    capacity_ = rhs.capacity_;
+    curr_size_ = rhs.curr_size_;
+    delete[] array_;
+    T* tempArr = new T[capacity_];
+    for (size_t i = 0; i < curr_size_; i++) {
+        tempArr[i] = rhs.array_[i];
+    }
+    array_ = tempArr;
+    tempArr = nullptr;
+    return *this;
+}
+
+template<typename T>
+ABS<T>::ABS(ABS&& other) noexcept {
+    capacity_ = other.capacity_;
+    curr_size_ = other.curr_size_;
+    array_ = other.array_;
+    other.capacity_ = 0;
+    other.curr_size_ = 0;
+    other.array_ = nullptr;
+}
+
+template<typename T>
+ABS<T>& ABS<T>::operator=(ABS&& rhs) noexcept {
+    if (this == &rhs) {
+        return *this;
+    }
+
+    capacity_ = rhs.capacity_;
+    curr_size_ = rhs.curr_size_;
+    array_ = rhs.array_;
+    rhs.capacity_ = 0;
+    rhs.curr_size_ = 0;
+    rhs.array_ = nullptr;
+    return *this;
+}
+
+template<typename T>
+ABS<T>::~ABS() noexcept {
+    delete[] array_;
+    capacity_ = 0;
+    curr_size_ = 0;
+}
+
+template<typename T>
+[[nodiscard]] size_t ABS<T>::getSize() const noexcept {
+    return curr_size_;
+}
+
+template<typename T>
+[[nodiscard]] size_t ABS<T>::getMaxCapacity() const noexcept {
+    return capacity_;
+}
+
+template<typename T>
+[[nodiscard]] T* ABS<T>::getData() const noexcept {
+    return array_;
+}
+
+template<typename T>
+void ABS<T>::push(const T& data) {
+    if (curr_size_ >= capacity_) {
+        capacity_ *= scale_factor_;
+        T* tempArr = new T[capacity_];
+        for (size_t i = 0; i < curr_size_; i++) {
+            tempArr[i] = array_[i];
+        }
+        delete[] array_;
+        array_ = tempArr;
+        tempArr = nullptr;
+    }
+
+    array_[curr_size_] = data;
+    curr_size_++;
+}
+
+template<typename T>
+T ABS<T>::peek() const {
+    return array_[curr_size_ - 1];
+}
+
+template<typename T>
+T ABS<T>::pop() {
+    if (curr_size_ == 0) {
+        throw std::out_of_range("Stack Empty");
+    }
+    curr_size_--;
+    return array_[curr_size_];
+}
+
+template<typename T>
+void ABS<T>::PrintForward() {
+    for (T item : array_) {
+        std::cout << item << std::endl;
+    }
+}
+
+template<typename T>
+void ABS<T>::PrintReverse() {
+    for (int i = curr_size_ - 1; i >= 0; i--) {
+        std::cout << array_[i] << std::endl;
+    }
+}

@@ -24,4 +24,48 @@ public:
 
     //Getters
     std::size_t getSize() const noexcept override;
+
+    void PrintForward();
+
+    void PrintReverse();
 };
+
+template<typename T>
+LLS<T>::LLS() {
+    list = new LinkedList<T>;
+}
+
+template<typename T>
+T LLS<T>::peek() const {
+    return list.getHead();
+}
+
+template<typename T>
+void LLS<T>::push(const T& item) {
+    list.addHead(item);
+}
+
+template<typename T>
+std::size_t LLS<T>::getSize() const noexcept {
+    return list.getCount();
+}
+
+template<typename T>
+T LLS<T>::pop() {
+    if (getSize() == 0) {
+        throw std::invalid_argument("Stack Empty");
+    }
+    T item = peek();
+    list.removeHead();
+    return item;
+}
+
+template<typename T>
+void LLS<T>::PrintForward() {
+    list.printForward();
+}
+
+template<typename T>
+void LLS<T>::PrintReverse() {
+    list.printReverse();
+}
