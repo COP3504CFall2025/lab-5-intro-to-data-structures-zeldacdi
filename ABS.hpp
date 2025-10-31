@@ -35,8 +35,8 @@ public:
 
     T pop() override;
 
-    void PrintForward();
-    void PrintReverse();
+    void printForward();
+    void printReverse();
 
 private:
     size_t capacity_;
@@ -152,6 +152,9 @@ void ABS<T>::push(const T& data) {
 
 template<typename T>
 T ABS<T>::peek() const {
+    if (curr_size_ == 0) {
+        throw std::runtime_error("Array is empty!");
+    }
     return array_[curr_size_ - 1];
 }
 
@@ -165,14 +168,14 @@ T ABS<T>::pop() {
 }
 
 template<typename T>
-void ABS<T>::PrintForward() {
+void ABS<T>::printForward() {
     for (T item : array_) {
         std::cout << item << std::endl;
     }
 }
 
 template<typename T>
-void ABS<T>::PrintReverse() {
+void ABS<T>::printReverse() {
     for (int i = curr_size_ - 1; i >= 0; i--) {
         std::cout << array_[i] << std::endl;
     }

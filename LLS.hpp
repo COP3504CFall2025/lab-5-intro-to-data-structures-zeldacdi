@@ -25,9 +25,9 @@ public:
     //Getters
     std::size_t getSize() const noexcept override;
 
-    void PrintForward();
+    void printForward();
 
-    void PrintReverse();
+    void printReverse();
 };
 
 template<typename T>
@@ -61,11 +61,11 @@ T LLS<T>::pop() {
 }
 
 template<typename T>
-void LLS<T>::PrintForward() {
-    list.PrintForward();
+void LLS<T>::printForward() {
+    list.printForward();
 }
 
 template<typename T>
-void LLS<T>::PrintReverse() {
-    list.PrintReverse();
+void LLS<T>::printReverse() {
+    list.printReverse();
 }

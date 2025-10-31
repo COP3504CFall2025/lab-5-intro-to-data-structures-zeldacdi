@@ -20,8 +20,8 @@ template <typename T>
 class LinkedList {
 public:
 	// Behaviors
-	void PrintForward() const;
-	void PrintReverse() const;
+	void printForward() const;
+	void printReverse() const;
 
 	// Accessors
 	[[nodiscard]] unsigned int getCount() const;
@@ -31,12 +31,12 @@ public:
 	const Node<T>* getTail() const;
 
 	// Insertion
-	void AddHead(const T& data);
-	void AddTail(const T& data);
+	void addHead(const T& data);
+	void addTail(const T& data);
 
 	// Removal
-	bool RemoveHead();
-	bool RemoveTail();
+	bool removeHead();
+	bool removeTail();
 	void Clear();
 
 	// Operators
@@ -58,7 +58,7 @@ private:
 };
 
 template <typename T>
-void LinkedList<T>::PrintForward() const {
+void LinkedList<T>::printForward() const {
 	Node<T>* current = head;
 	while (current != nullptr) {
 		cout << current->data << endl;
@@ -67,7 +67,7 @@ void LinkedList<T>::PrintForward() const {
 }
 
 template <typename T>
-void LinkedList<T>::PrintReverse() const {
+void LinkedList<T>::printReverse() const {
 	Node<T>* current = tail;
 	while (current != nullptr) {
 		cout << current->data << " " << endl;
@@ -101,7 +101,7 @@ const Node<T>* LinkedList<T>::getTail() const {
 }
 
 template <typename T>
-void LinkedList<T>::AddHead(const T& data) {
+void LinkedList<T>::addHead(const T& data) {
 	if (head == nullptr) {
 		head = new Node<T>(data);
 		tail = head;
@@ -115,7 +115,7 @@ void LinkedList<T>::AddHead(const T& data) {
 }
 
 template <typename T>
-void LinkedList<T>::AddTail(const T& data) {
+void LinkedList<T>::addTail(const T& data) {
 	if (tail == nullptr) {
 		tail = new Node<T>(data);
 		head = tail;
@@ -129,13 +129,15 @@ void LinkedList<T>::AddTail(const T& data) {
 }
 
 template <typename T>
-bool LinkedList<T>::RemoveHead() {
+bool LinkedList<T>::removeHead() {
 	if (head == nullptr) {
 		return false;
 	}
 	if (head -> next == nullptr) {
 		delete head;
 		head = nullptr;
+		tail = nullptr;
+		count--;
 		return true;
 	}
 	head = head->next;
@@ -146,13 +148,15 @@ bool LinkedList<T>::RemoveHead() {
 }
 
 template <typename T>
-bool LinkedList<T>::RemoveTail() {
+bool LinkedList<T>::removeTail() {
 	if (tail == nullptr) {
 		return false;
 	}
 	if (tail -> prev == nullptr) {
 		delete tail;
 		tail = nullptr;
+		head = nullptr;
+		count--;
 		return true;
 	}
 	tail = tail->prev;
@@ -164,12 +168,16 @@ bool LinkedList<T>::RemoveTail() {
 
 template<typename T>
 void LinkedList<T>::Clear() {
+	if (count == 0) {
+		return;
+	}
 	Node<T>* current = head;
 	while (current != nullptr) {
 		Node<T>* tempNext = current->next;
 		delete current;
 		current = tempNext;
 	}
+	count = 0;
 }
 
 template <typename T>
@@ -181,7 +189,7 @@ LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>&& other) noexcept {
 	Node<T>* otherCurr = other.head;
 
 	while (otherCurr != nullptr) {
-		AddHead(otherCurr->data);
+		addHead(otherCurr->data);
 		otherCurr = otherCurr->next;
 		delete otherCurr->prev;
 	}
@@ -199,7 +207,7 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
 	Node<T>* otherCurr = rhs.head;
 
 	while (otherCurr != nullptr) {
-		AddHead(otherCurr->data);
+		addHead(otherCurr->data);
 		otherCurr = otherCurr->next;
 	}
 
@@ -220,7 +228,7 @@ LinkedList<T>::LinkedList(const LinkedList<T> &list) {
 	Node<T>* currNode = list.getHead()->next;
 	count = 0;
 	while (currNode != nullptr) {
-		AddTail(currNode->data);
+		addTail(currNode->data);
 		currNode = currNode->next;
 		count++;
 	}

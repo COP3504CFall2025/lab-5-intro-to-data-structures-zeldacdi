@@ -32,9 +32,9 @@ public:
     // Getter
     std::size_t getSize() const noexcept override;
 
-    void PrintForward();
+    void printForward();
 
-    void PrintReverse();
+    void printReverse();
 
     ~LLDQ() override = default;
 };
@@ -79,13 +79,13 @@ std::size_t LLDQ<T>::getSize() const noexcept {
 }
 
 template<typename T>
-void LLDQ<T>::PrintForward() {
-    list.PrintForward();
+void LLDQ<T>::printForward() {
+    list.printForward();
 }
 
 template<typename T>
-void LLDQ<T>::PrintReverse() {
-    list.PrintReverse();
+void LLDQ<T>::printReverse() {
+    list.printReverse();
 }
 
 
