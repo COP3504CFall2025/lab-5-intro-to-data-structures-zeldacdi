@@ -164,16 +164,16 @@ T ABQ<T>::dequeue() {
         throw std::runtime_error("Array is empty!");
     }
     T deletedElement = array_[0];
-    curr_size_--;
 
-    if (curr_size_ <= capacity_ / 2) {
+    if (curr_size_ - 1 <= capacity_ / 2 && capacity_ > 1) {
         capacity_ /= 2;
     }
 
     T* tempArr = new T[capacity_];
-    for (size_t i = 1; i < curr_size_ + 1; i++) {
+    for (size_t i = 1; i < curr_size_; i++) {
         tempArr[i-1] = array_[i];
     }
+    curr_size_--;
     delete[] array_;
     array_ = tempArr;
     tempArr = nullptr;

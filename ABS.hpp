@@ -163,7 +163,7 @@ T ABS<T>::pop() {
     if (curr_size_ == 0) {
         throw std::runtime_error("Stack Empty");
     }
-    T deletedElement = array_[curr_size_];
+    T deletedElement = array_[curr_size_ - 1];
     curr_size_--;
 
     if (curr_size_ <= capacity_ / 2) {

@@ -52,7 +52,7 @@ std::size_t LLS<T>::getSize() const noexcept {
 template<typename T>
 T LLS<T>::pop() {
     if (getSize() == 0) {
-        throw std::invalid_argument("Stack Empty");
+        throw std::runtime_error("Stack Empty");
     }
     T item = peek();
     list.removeHead();

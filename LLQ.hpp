@@ -33,6 +33,9 @@ public:
 
 template<typename T>
 T LLQ<T>::peek() const {
+    if (list.getHead() == nullptr) {
+        throw std::runtime_error("empty");
+    }
     return list.getHead()->data;
 }
 
