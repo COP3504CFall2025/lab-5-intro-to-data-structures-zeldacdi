@@ -114,7 +114,7 @@ const Node<T>* LinkedList<T>::getTail() const {
 
 template <typename T>
 void LinkedList<T>::addHead(const T& data) {
-	if (head == nullptr) {
+	if (count == 0) {
 		head = new Node<T>(data);
 		tail = head;
 	}
@@ -128,7 +128,7 @@ void LinkedList<T>::addHead(const T& data) {
 
 template <typename T>
 void LinkedList<T>::addTail(const T& data) {
-	if (tail == nullptr) {
+	if (count == 0) {
 		tail = new Node<T>(data);
 		head = tail;
 	}
@@ -214,12 +214,11 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
 	}
 	head = nullptr;
 	tail = nullptr;
-	clear();
-	Node<T>* otherCurr = rhs.head;
-
-	while (otherCurr != nullptr) {
-		addTail(otherCurr->data);
-		otherCurr = otherCurr->next;
+	Node<T>* currNode = const_cast<Node<T>*>(rhs.getHead());
+	count = 0;
+	while (currNode != nullptr) {
+		addTail(currNode->data);
+		currNode = currNode->next;
 	}
 
 	return *this;
@@ -235,9 +234,9 @@ LinkedList<T>::LinkedList() {
 
 template<typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& list) {
-	head = new Node<T>(list.getHead()->data);
+	head = nullptr;
 	tail = nullptr;
-	Node<T>* currNode = list.getHead()->next;
+	Node<T>* currNode = const_cast<Node<T>*>(list.getHead());
 	count = 0;
 	while (currNode != nullptr) {
 		addTail(currNode->data);
