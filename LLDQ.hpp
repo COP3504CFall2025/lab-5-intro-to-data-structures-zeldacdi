@@ -41,12 +41,12 @@ public:
 
 template<typename T>
 const T& LLDQ<T>::front() const {
-    return list.getHead();
+    return list.getHead()->data;
 }
 
 template<typename T>
 const T& LLDQ<T>::back() const {
-    return list.getTail();
+    return list.getTail()->data;
 }
 
 template<typename T>
@@ -80,12 +80,12 @@ std::size_t LLDQ<T>::getSize() const noexcept {
 
 template<typename T>
 void LLDQ<T>::PrintForward() {
-    list.printForward();
+    list.PrintForward();
 }
 
 template<typename T>
 void LLDQ<T>::PrintReverse() {
-    list.printReverse();
+    list.PrintReverse();
 }
 
 

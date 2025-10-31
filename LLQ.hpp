@@ -39,7 +39,7 @@ LLQ<T>::LLQ() {
 
 template<typename T>
 T LLQ<T>::peek() const {
-    return list.getHead();
+    return list.getHead()->data;
 }
 
 template<typename T>
@@ -61,10 +61,10 @@ std::size_t LLQ<T>::getSize() const noexcept {
 
 template<typename T>
 void LLQ<T>::PrintForward() {
-    list.printForward();
+    list.PrintForward();
 }
 
 template<typename T>
 void LLQ<T>::PrintReverse() {
-    list.printReverse();
+    list.PrintReverse();
 }

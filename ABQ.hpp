@@ -101,6 +101,7 @@ ABQ<T>& ABQ<T>::operator=(ABQ&& rhs) noexcept {
         return *this;
     }
 
+    delete[] array_;
     capacity_ = rhs.capacity_;
     curr_size_ = rhs.curr_size_;
     array_ = rhs.array_;
@@ -151,6 +152,9 @@ void ABQ<T>::enqueue(const T& data) {
 
 template<typename T>
 T ABQ<T>::peek() const {
+    if (curr_size_ == 0) {
+        throw std::runtime_error("Array is empty!");
+    }
     return array_[0];
 }
 

@@ -20,8 +20,8 @@ template <typename T>
 class LinkedList {
 public:
 	// Behaviors
-	void printForward() const;
-	void printReverse() const;
+	void PrintForward() const;
+	void PrintReverse() const;
 
 	// Accessors
 	[[nodiscard]] unsigned int getCount() const;
@@ -58,7 +58,7 @@ private:
 };
 
 template <typename T>
-void LinkedList<T>::printForward() const {
+void LinkedList<T>::PrintForward() const {
 	Node<T>* current = head;
 	while (current != nullptr) {
 		cout << current->data << endl;
@@ -67,7 +67,7 @@ void LinkedList<T>::printForward() const {
 }
 
 template <typename T>
-void LinkedList<T>::printReverse() const {
+void LinkedList<T>::PrintReverse() const {
 	Node<T>* current = tail;
 	while (current != nullptr) {
 		cout << current->data << " " << endl;

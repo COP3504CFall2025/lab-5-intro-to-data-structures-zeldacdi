@@ -62,10 +62,10 @@ T LLS<T>::pop() {
 
 template<typename T>
 void LLS<T>::PrintForward() {
-    list.printForward();
+    list.PrintForward();
 }
 
 template<typename T>
 void LLS<T>::PrintReverse() {
-    list.printReverse();
+    list.PrintReverse();
 }

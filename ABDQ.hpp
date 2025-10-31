@@ -122,6 +122,8 @@ ABDQ<T>& ABDQ<T>::operator=(ABDQ&& other) noexcept {
         return *this;
     }
 
+    delete[] data_;
+
     capacity_ = other.capacity_;
     size_ = other.size_;
     data_ = other.data_;
