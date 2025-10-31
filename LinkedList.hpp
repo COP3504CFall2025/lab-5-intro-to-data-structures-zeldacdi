@@ -244,7 +244,6 @@ LinkedList<T>::LinkedList(const LinkedList<T> &list) {
 		currNode = currNode->next;
 		count++;
 	}
-	tail = currNode->prev;
 }
 
 template<typename T>
