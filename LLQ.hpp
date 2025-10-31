@@ -39,13 +39,13 @@ T LLQ<T>::peek() const {
 
 template<typename T>
 void LLQ<T>::enqueue(const T& item) {
-    list.AddTail(item);
+    list.addTail(item);
 }
 
 template<typename T>
 T LLQ<T>::dequeue() {
     T item = peek();
-    list.RemoveHead();
+    list.removeHead();
     return item;
 }
 

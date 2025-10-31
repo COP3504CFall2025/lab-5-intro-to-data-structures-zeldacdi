@@ -36,7 +36,7 @@ T LLS<T>::peek() const {
 
 template<typename T>
 void LLS<T>::push(const T& item) {
-    list.AddHead(item);
+    list.addHead(item);
 }
 
 template<typename T>
@@ -50,6 +50,6 @@ T LLS<T>::pop() {
         throw std::invalid_argument("Stack Empty");
     }
     T item = peek();
-    list.RemoveHead();
+    list.removeHead();
     return item;
 }

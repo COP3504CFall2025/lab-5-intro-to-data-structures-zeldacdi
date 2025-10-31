@@ -51,12 +51,12 @@ const T& LLDQ<T>::back() const {
 
 template<typename T>
 void LLDQ<T>::pushFront(const T& item) {
-    list.AddHead(item);
+    list.addHead(item);
 }
 
 template<typename T>
 void LLDQ<T>::pushBack(const T& item) {
-    list.AddTail(item);
+    list.addTail(item);
 }
 
 template<typename T>
@@ -65,7 +65,7 @@ T LLDQ<T>::popFront() {
         throw std::runtime_error("list is empty");
     }
     T item = front();
-    list.RemoveHead();
+    list.removeHead();
     return item;
 }
 
@@ -75,7 +75,7 @@ T LLDQ<T>::popBack() {
         throw std::runtime_error("list is empty");
     }
     T item = back();
-    list.RemoveTail();
+    list.removeTail();
     return item;
 }
 

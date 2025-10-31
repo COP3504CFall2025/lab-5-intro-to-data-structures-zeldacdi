@@ -31,12 +31,12 @@ public:
 	const Node<T>* getTail() const;
 
 	// Insertion
-	void AddHead(const T& data);
-	void AddTail(const T& data);
+	void addHead(const T& data);
+	void addTail(const T& data);
 
 	// Removal
-	bool RemoveHead();
-	bool RemoveTail();
+	bool removeHead();
+	bool removeTail();
 	void Clear();
 
 	// Operators
@@ -113,7 +113,7 @@ const Node<T>* LinkedList<T>::getTail() const {
 }
 
 template <typename T>
-void LinkedList<T>::AddHead(const T& data) {
+void LinkedList<T>::addHead(const T& data) {
 	if (head == nullptr) {
 		head = new Node<T>(data);
 		tail = head;
@@ -127,7 +127,7 @@ void LinkedList<T>::AddHead(const T& data) {
 }
 
 template <typename T>
-void LinkedList<T>::AddTail(const T& data) {
+void LinkedList<T>::addTail(const T& data) {
 	if (tail == nullptr) {
 		tail = new Node<T>(data);
 		head = tail;
@@ -141,7 +141,7 @@ void LinkedList<T>::AddTail(const T& data) {
 }
 
 template <typename T>
-bool LinkedList<T>::RemoveHead() {
+bool LinkedList<T>::removeHead() {
 	if (head == nullptr) {
 		return false;
 	}
@@ -160,7 +160,7 @@ bool LinkedList<T>::RemoveHead() {
 }
 
 template <typename T>
-bool LinkedList<T>::RemoveTail() {
+bool LinkedList<T>::removeTail() {
 	if (tail == nullptr) {
 		return false;
 	}
@@ -201,7 +201,7 @@ LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>&& other) noexcept {
 	Node<T>* otherCurr = other.head;
 
 	while (otherCurr != nullptr) {
-		AddHead(otherCurr->data);
+		addHead(otherCurr->data);
 		otherCurr = otherCurr->next;
 		delete otherCurr->prev;
 	}
@@ -219,7 +219,7 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
 	Node<T>* otherCurr = rhs.head;
 
 	while (otherCurr != nullptr) {
-		AddHead(otherCurr->data);
+		addHead(otherCurr->data);
 		otherCurr = otherCurr->next;
 	}
 
@@ -240,7 +240,7 @@ LinkedList<T>::LinkedList(const LinkedList<T> &list) {
 	Node<T>* currNode = list.getHead()->next;
 	count = 0;
 	while (currNode != nullptr) {
-		AddTail(currNode->data);
+		addTail(currNode->data);
 		currNode = currNode->next;
 		count++;
 	}
