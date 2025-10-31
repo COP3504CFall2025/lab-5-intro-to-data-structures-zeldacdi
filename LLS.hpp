@@ -12,6 +12,8 @@ private:
 public:
     // Constructor
     LLS() = default;
+    LLS(const LLS& other);
+    LLS(LLS&& other);
 
     // Insertion
     void push(const T& item) override;
@@ -25,6 +27,17 @@ public:
     //Getters
     std::size_t getSize() const noexcept override;
 };
+
+template<typename T>
+LLS<T>::LLS(const LLS& other) {
+    list = other.list;
+}
+
+template<typename T>
+LLS<T>::LLS(LLS&& other) {
+    list = other.list;
+    other.list = 0;
+}
 
 template<typename T>
 T LLS<T>::peek() const {

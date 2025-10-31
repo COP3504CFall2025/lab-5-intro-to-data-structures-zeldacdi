@@ -37,7 +37,7 @@ public:
 	// Removal
 	bool removeHead();
 	bool removeTail();
-	void Clear();
+	void clear();
 
 	// Operators
 	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept;
@@ -179,7 +179,7 @@ bool LinkedList<T>::removeTail() {
 }
 
 template<typename T>
-void LinkedList<T>::Clear() {
+void LinkedList<T>::clear() {
 	if (count == 0) {
 		return;
 	}
@@ -197,7 +197,7 @@ LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>&& other) noexcept {
 	if (this == &other) {
 		return *this;
 	}
-	Clear();
+	clear();
 	Node<T>* otherCurr = other.head;
 
 	while (otherCurr != nullptr) {
@@ -215,7 +215,7 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
 	if (this == &rhs) {
 		return *this;
 	}
-	Clear();
+	clear();
 	Node<T>* otherCurr = rhs.head;
 
 	while (otherCurr != nullptr) {
@@ -235,7 +235,7 @@ LinkedList<T>::LinkedList() {
 }
 
 template<typename T>
-LinkedList<T>::LinkedList(const LinkedList<T> &list) {
+LinkedList<T>::LinkedList(const LinkedList<T>& list) {
 	head = new Node<T>(list.getHead()->data);
 	Node<T>* currNode = list.getHead()->next;
 	count = 0;
@@ -258,6 +258,6 @@ LinkedList<T>::LinkedList(LinkedList<T>&& other) noexcept {
 
 template<typename T>
 LinkedList<T>::~LinkedList() {
-	Clear();
+	clear();
 }
 

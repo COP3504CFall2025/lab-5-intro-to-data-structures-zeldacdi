@@ -12,6 +12,8 @@ private:
 public:
     // Constructor
     LLQ();
+    LLQ(const LLQ& other);
+    LLQ(LLQ&& other);
 
     // Insertion
     void enqueue(const T& item) override;
@@ -30,6 +32,17 @@ template<typename T>
 LLQ<T>::LLQ() {
     LinkedList<T> l;
     list = l;
+}
+
+template<typename T>
+LLQ<T>::LLQ(const LLQ& other) {
+    list = other.list;
+}
+
+template<typename T>
+LLQ<T>::LLQ(LLQ&& other) {
+    list = other.list;
+    other.list = 0;
 }
 
 template<typename T>
