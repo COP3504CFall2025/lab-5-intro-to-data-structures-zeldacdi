@@ -20,8 +20,8 @@ template <typename T>
 class LinkedList {
 public:
 	// Behaviors
-	void PrintForward() const;
-	void PrintReverse() const;
+	void printForward() const;
+	void printReverse() const;
 
 	// Accessors
 	[[nodiscard]] unsigned int getCount() const;
@@ -58,7 +58,7 @@ private:
 };
 
 template <typename T>
-void LinkedList<T>::PrintForward() const {
+void LinkedList<T>::printForward() const {
 	Node<T>* current = head;
 	while (current != nullptr) {
 		cout << current->data << endl;
@@ -67,7 +67,7 @@ void LinkedList<T>::PrintForward() const {
 }
 
 template <typename T>
-void LinkedList<T>::PrintReverse() const {
+void LinkedList<T>::printReverse() const {
 	Node<T>* current = tail;
 	while (current != nullptr) {
 		cout << current->data << " " << endl;
@@ -82,21 +82,33 @@ template <typename T>
 
 template <typename T>
 Node<T>* LinkedList<T>::getHead() {
+	if (count == 0) {
+		throw std::runtime_error("list is empty");
+	}
 	return head;
 }
 
 template <typename T>
 const Node<T>* LinkedList<T>::getHead() const {
+	if (count == 0) {
+		throw std::runtime_error("list is empty");
+	}
 	return head;
 }
 
 template <typename T>
 Node<T>* LinkedList<T>::getTail() {
+	if (count == 0) {
+		throw std::runtime_error("list is empty");
+	}
 	return tail;
 }
 
 template <typename T>
 const Node<T>* LinkedList<T>::getTail() const {
+	if (count == 0) {
+		throw std::runtime_error("list is empty");
+	}
 	return tail;
 }
 

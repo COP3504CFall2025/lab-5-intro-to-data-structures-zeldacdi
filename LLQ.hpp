@@ -24,11 +24,6 @@ public:
 
     // Getter
     std::size_t getSize() const noexcept override;
-
-    void PrintForward();
-
-    void PrintReverse();
-
 };
 
 template<typename T>
@@ -57,14 +52,4 @@ T LLQ<T>::dequeue() {
 template<typename T>
 std::size_t LLQ<T>::getSize() const noexcept {
     return list.getCount();
-}
-
-template<typename T>
-void LLQ<T>::PrintForward() {
-    list.PrintForward();
-}
-
-template<typename T>
-void LLQ<T>::PrintReverse() {
-    list.PrintReverse();
 }

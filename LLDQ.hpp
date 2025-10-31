@@ -15,7 +15,7 @@ private:
 
 public:
     // Constructor
-    LLDQ();
+    LLDQ() = default;
 
     // Core Insertion Operations
     void pushFront(const T& item) override;
@@ -31,28 +31,21 @@ public:
 
     // Getter
     std::size_t getSize() const noexcept override;
-
-    void PrintForward();
-
-    void PrintReverse();
-
-    ~LLDQ() override = default;
 };
 
 template<typename T>
-LLDQ<T>::LLDQ() {
-    LinkedList<T> l;
-    list = l;
-}
-
-
-template<typename T>
 const T& LLDQ<T>::front() const {
+    if (list.getCount() == 0) {
+        throw std::runtime_error("list is empty");
+    }
     return list.getHead()->data;
 }
 
 template<typename T>
 const T& LLDQ<T>::back() const {
+    if (list.getCount() == 0) {
+        throw std::runtime_error("list is empty");
+    }
     return list.getTail()->data;
 }
 
@@ -68,6 +61,9 @@ void LLDQ<T>::pushBack(const T& item) {
 
 template<typename T>
 T LLDQ<T>::popFront() {
+    if (list.getCount() == 0) {
+        throw std::runtime_error("list is empty");
+    }
     T item = front();
     list.RemoveHead();
     return item;
@@ -75,6 +71,9 @@ T LLDQ<T>::popFront() {
 
 template<typename T>
 T LLDQ<T>::popBack() {
+    if (list.getCount() == 0) {
+        throw std::runtime_error("list is empty");
+    }
     T item = back();
     list.RemoveTail();
     return item;
@@ -83,16 +82,6 @@ T LLDQ<T>::popBack() {
 template<typename T>
 std::size_t LLDQ<T>::getSize() const noexcept {
     return list.getCount();
-}
-
-template<typename T>
-void LLDQ<T>::PrintForward() {
-    list.PrintForward();
-}
-
-template<typename T>
-void LLDQ<T>::PrintReverse() {
-    list.PrintReverse();
 }
 
 

@@ -171,7 +171,7 @@ T ABQ<T>::dequeue() {
     }
 
     T* tempArr = new T[capacity_];
-    for (size_t i = 1; i < curr_size_; i++) {
+    for (size_t i = 1; i < curr_size_ + 1; i++) {
         tempArr[i-1] = array_[i];
     }
     delete[] array_;

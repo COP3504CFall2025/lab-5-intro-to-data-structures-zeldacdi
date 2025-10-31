@@ -11,7 +11,7 @@ private:
     LinkedList<T> list;
 public:
     // Constructor
-    LLS();
+    LLS() = default;
 
     // Insertion
     void push(const T& item) override;
@@ -24,19 +24,13 @@ public:
 
     //Getters
     std::size_t getSize() const noexcept override;
-
-    void PrintForward();
-
-    void PrintReverse();
 };
 
 template<typename T>
-LLS<T>::LLS() {
-    list = new LinkedList<T>;
-}
-
-template<typename T>
 T LLS<T>::peek() const {
+    if (list.getCount() == 0) {
+        throw std::runtime_error("list is empty");
+    }
     return list.getHead()->data;
 }
 
@@ -58,14 +52,4 @@ T LLS<T>::pop() {
     T item = peek();
     list.RemoveHead();
     return item;
-}
-
-template<typename T>
-void LLS<T>::PrintForward() {
-    list.PrintForward();
-}
-
-template<typename T>
-void LLS<T>::PrintReverse() {
-    list.PrintReverse();
 }
