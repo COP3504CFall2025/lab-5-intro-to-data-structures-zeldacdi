@@ -15,7 +15,7 @@ private:
 
 public:
     // Constructor
-    LLDQ() = default;
+    LLDQ();
 
     // Core Insertion Operations
     void pushFront(const T& item) override;
@@ -38,6 +38,13 @@ public:
 
     ~LLDQ() override = default;
 };
+
+template<typename T>
+LLDQ<T>::LLDQ() {
+    LinkedList<T> l;
+    list = l;
+}
+
 
 template<typename T>
 const T& LLDQ<T>::front() const {

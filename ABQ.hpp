@@ -160,7 +160,15 @@ T ABQ<T>::peek() const {
 
 template<typename T>
 T ABQ<T>::dequeue() {
+    if (curr_size_ == 0) {
+        throw std::runtime_error("Array is empty!");
+    }
     T deletedElement = array_[0];
+    curr_size_--;
+
+    if (curr_size_ <= capacity_ / 2) {
+        capacity_ /= 2;
+    }
 
     T* tempArr = new T[capacity_];
     for (size_t i = 1; i < curr_size_; i++) {
@@ -170,7 +178,6 @@ T ABQ<T>::dequeue() {
     array_ = tempArr;
     tempArr = nullptr;
 
-    curr_size_--;
     return deletedElement;
 }
 

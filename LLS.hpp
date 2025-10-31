@@ -37,7 +37,7 @@ LLS<T>::LLS() {
 
 template<typename T>
 T LLS<T>::peek() const {
-    return list.getHead();
+    return list.getHead()->data;
 }
 
 template<typename T>

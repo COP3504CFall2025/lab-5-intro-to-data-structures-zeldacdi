@@ -50,7 +50,7 @@ void LLQ<T>::enqueue(const T& item) {
 template<typename T>
 T LLQ<T>::dequeue() {
     T item = peek();
-    list.removeHead();
+    list.RemoveHead();
     return item;
 }
 

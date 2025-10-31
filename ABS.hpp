@@ -101,7 +101,7 @@ ABS<T>& ABS<T>::operator=(ABS&& rhs) noexcept {
     if (this == &rhs) {
         return *this;
     }
-
+    delete[] array_;
     capacity_ = rhs.capacity_;
     curr_size_ = rhs.curr_size_;
     array_ = rhs.array_;
@@ -161,10 +161,24 @@ T ABS<T>::peek() const {
 template<typename T>
 T ABS<T>::pop() {
     if (curr_size_ == 0) {
-        throw std::out_of_range("Stack Empty");
+        throw std::runtime_error("Stack Empty");
     }
+    T deletedElement = array_[curr_size_];
     curr_size_--;
-    return array_[curr_size_];
+
+    if (curr_size_ <= capacity_ / 2) {
+        capacity_ /= 2;
+    }
+
+    T* tempArr = new T[capacity_];
+    for (size_t i = 0; i < curr_size_; i++) {
+        tempArr[i] = array_[i];
+    }
+    delete[] array_;
+    array_ = tempArr;
+    tempArr = nullptr;
+
+    return deletedElement;
 }
 
 template<typename T>
