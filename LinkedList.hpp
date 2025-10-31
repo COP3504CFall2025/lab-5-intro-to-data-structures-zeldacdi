@@ -20,8 +20,8 @@ template <typename T>
 class LinkedList {
 public:
 	// Behaviors
-	void printForward() const;
-	void printReverse() const;
+	void PrintForward() const;
+	void PrintReverse() const;
 
 	// Accessors
 	[[nodiscard]] unsigned int getCount() const;
@@ -31,12 +31,12 @@ public:
 	const Node<T>* getTail() const;
 
 	// Insertion
-	void addHead(const T& data);
-	void addTail(const T& data);
+	void AddHead(const T& data);
+	void AddTail(const T& data);
 
 	// Removal
-	bool removeHead();
-	bool removeTail();
+	bool RemoveHead();
+	bool RemoveTail();
 	void Clear();
 
 	// Operators
@@ -58,7 +58,7 @@ private:
 };
 
 template <typename T>
-void LinkedList<T>::printForward() const {
+void LinkedList<T>::PrintForward() const {
 	Node<T>* current = head;
 	while (current != nullptr) {
 		cout << current->data << endl;
@@ -67,7 +67,7 @@ void LinkedList<T>::printForward() const {
 }
 
 template <typename T>
-void LinkedList<T>::printReverse() const {
+void LinkedList<T>::PrintReverse() const {
 	Node<T>* current = tail;
 	while (current != nullptr) {
 		cout << current->data << " " << endl;
@@ -101,7 +101,7 @@ const Node<T>* LinkedList<T>::getTail() const {
 }
 
 template <typename T>
-void LinkedList<T>::addHead(const T& data) {
+void LinkedList<T>::AddHead(const T& data) {
 	if (head == nullptr) {
 		head = new Node<T>(data);
 		tail = head;
@@ -115,7 +115,7 @@ void LinkedList<T>::addHead(const T& data) {
 }
 
 template <typename T>
-void LinkedList<T>::addTail(const T& data) {
+void LinkedList<T>::AddTail(const T& data) {
 	if (tail == nullptr) {
 		tail = new Node<T>(data);
 		head = tail;
@@ -129,7 +129,7 @@ void LinkedList<T>::addTail(const T& data) {
 }
 
 template <typename T>
-bool LinkedList<T>::removeHead() {
+bool LinkedList<T>::RemoveHead() {
 	if (head == nullptr) {
 		return false;
 	}
@@ -148,7 +148,7 @@ bool LinkedList<T>::removeHead() {
 }
 
 template <typename T>
-bool LinkedList<T>::removeTail() {
+bool LinkedList<T>::RemoveTail() {
 	if (tail == nullptr) {
 		return false;
 	}
@@ -189,7 +189,7 @@ LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>&& other) noexcept {
 	Node<T>* otherCurr = other.head;
 
 	while (otherCurr != nullptr) {
-		addHead(otherCurr->data);
+		AddHead(otherCurr->data);
 		otherCurr = otherCurr->next;
 		delete otherCurr->prev;
 	}
@@ -207,7 +207,7 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
 	Node<T>* otherCurr = rhs.head;
 
 	while (otherCurr != nullptr) {
-		addHead(otherCurr->data);
+		AddHead(otherCurr->data);
 		otherCurr = otherCurr->next;
 	}
 
@@ -228,7 +228,7 @@ LinkedList<T>::LinkedList(const LinkedList<T> &list) {
 	Node<T>* currNode = list.getHead()->next;
 	count = 0;
 	while (currNode != nullptr) {
-		addTail(currNode->data);
+		AddTail(currNode->data);
 		currNode = currNode->next;
 		count++;
 	}

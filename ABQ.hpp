@@ -39,8 +39,8 @@ public:
     // Deletion
     T dequeue() override;
 
-    void printForward();
-    void printReverse();
+    void PrintForward();
+    void PrintReverse();
 
 };
 
@@ -175,14 +175,14 @@ T ABQ<T>::dequeue() {
 }
 
 template<typename T>
-void ABQ<T>::printForward() {
+void ABQ<T>::PrintForward() {
     for (T item : array_) {
         std::cout << item << std::endl;
     }
 }
 
 template<typename T>
-void ABQ<T>::printReverse() {
+void ABQ<T>::PrintReverse() {
     for (int i = curr_size_ - 1; i >= 0; i--) {
         std::cout << array_[i] << std::endl;
     }

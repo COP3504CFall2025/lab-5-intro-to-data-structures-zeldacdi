@@ -47,8 +47,8 @@ public:
     // Getters
     std::size_t getSize() const noexcept override;
 
-    void printForward();
-    void printReverse();
+    void PrintForward();
+    void PrintReverse();
 
     void ensureCapacity();
 };
@@ -262,14 +262,14 @@ void ABDQ<T>::shrinkIfNeeded() {
 }
 
 template<typename T>
-void ABDQ<T>::printForward() {
+void ABDQ<T>::PrintForward() {
     for (T item : data_) {
         std::cout << item << std::endl;
     }
 }
 
 template<typename T>
-void ABDQ<T>::printReverse() {
+void ABDQ<T>::PrintReverse() {
     for (int i = size_ - 1; i >= 0; i--) {
         std::cout << data_[i] << std::endl;
     }
