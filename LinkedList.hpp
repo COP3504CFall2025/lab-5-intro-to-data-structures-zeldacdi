@@ -82,17 +82,11 @@ template <typename T>
 
 template <typename T>
 Node<T>* LinkedList<T>::getHead() {
-	if (count == 0) {
-		throw std::runtime_error("list is empty");
-	}
 	return head;
 }
 
 template <typename T>
 const Node<T>* LinkedList<T>::getHead() const {
-	if (count == 0) {
-		throw std::runtime_error("list is empty");
-	}
 	return head;
 }
 
@@ -197,16 +191,13 @@ LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>&& other) noexcept {
 	if (this == &other) {
 		return *this;
 	}
-	clear();
-	Node<T>* otherCurr = other.head;
-
-	while (otherCurr != nullptr) {
-		addHead(otherCurr->data);
-		otherCurr = otherCurr->next;
-		delete otherCurr->prev;
-	}
-
+	head = other.head;
+	tail = other.tail;
+	count = other.count;
+	other.head = nullptr;
+	other.tail = nullptr;
 	other.count = 0;
+
 	return *this;
 }
 
@@ -215,11 +206,13 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
 	if (this == &rhs) {
 		return *this;
 	}
+	head = nullptr;
+	tail = nullptr;
 	clear();
 	Node<T>* otherCurr = rhs.head;
 
 	while (otherCurr != nullptr) {
-		addHead(otherCurr->data);
+		addTail(otherCurr->data);
 		otherCurr = otherCurr->next;
 	}
 
@@ -237,12 +230,12 @@ LinkedList<T>::LinkedList() {
 template<typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& list) {
 	head = new Node<T>(list.getHead()->data);
+	tail = nullptr;
 	Node<T>* currNode = list.getHead()->next;
 	count = 0;
 	while (currNode != nullptr) {
 		addTail(currNode->data);
 		currNode = currNode->next;
-		count++;
 	}
 }
 
