@@ -11,9 +11,12 @@ private:
     LinkedList<T> list;
 public:
     // Constructor
-    LLQ();
-    LLQ(const LLQ& other);
-    LLQ(LLQ&& other);
+    LLQ() = default;
+    LLQ(const LLQ& other) = default;
+    LLQ(LLQ&& other) = default;
+
+    LLQ& operator=(const LLQ& other) = default;
+    LLQ& operator=(LLQ&& other) noexcept = default;
 
     // Insertion
     void enqueue(const T& item) override;
@@ -27,23 +30,6 @@ public:
     // Getter
     std::size_t getSize() const noexcept override;
 };
-
-template<typename T>
-LLQ<T>::LLQ() {
-    LinkedList<T> l;
-    list = l;
-}
-
-template<typename T>
-LLQ<T>::LLQ(const LLQ& other) {
-    list = other.list;
-}
-
-template<typename T>
-LLQ<T>::LLQ(LLQ&& other) {
-    list = other.list;
-    other.list = 0;
-}
 
 template<typename T>
 T LLQ<T>::peek() const {

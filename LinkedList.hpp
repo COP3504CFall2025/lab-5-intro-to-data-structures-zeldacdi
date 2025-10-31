@@ -82,18 +82,24 @@ template <typename T>
 
 template <typename T>
 Node<T>* LinkedList<T>::getHead() {
+	if (count == 0) {
+		return nullptr;
+	}
 	return head;
 }
 
 template <typename T>
 const Node<T>* LinkedList<T>::getHead() const {
+	if (count == 0) {
+		return nullptr;
+	}
 	return head;
 }
 
 template <typename T>
 Node<T>* LinkedList<T>::getTail() {
 	if (count == 0) {
-		throw std::runtime_error("list is empty");
+		return nullptr;
 	}
 	return tail;
 }
@@ -101,7 +107,7 @@ Node<T>* LinkedList<T>::getTail() {
 template <typename T>
 const Node<T>* LinkedList<T>::getTail() const {
 	if (count == 0) {
-		throw std::runtime_error("list is empty");
+		return nullptr;
 	}
 	return tail;
 }

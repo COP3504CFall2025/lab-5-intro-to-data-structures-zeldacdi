@@ -16,8 +16,11 @@ private:
 public:
     // Constructor
     LLDQ() = default;
-    LLDQ(const LLDQ& other);
-    LLDQ(LLDQ&& other);
+    LLDQ(const LLDQ& other) = default;
+    LLDQ(LLDQ&& other) = default;
+
+    LLDQ& operator=(const LLDQ& other) = default;
+    LLDQ& operator=(LLDQ&& other) noexcept = default;
 
 
     // Core Insertion Operations
@@ -35,17 +38,6 @@ public:
     // Getter
     std::size_t getSize() const noexcept override;
 };
-
-template<typename T>
-LLDQ<T>::LLDQ(const LLDQ& other) {
-    list = other.list;
-}
-
-template<typename T>
-LLDQ<T>::LLDQ(LLDQ&& other) {
-    list = other.list;
-    other.list = 0;
-}
 
 template<typename T>
 const T& LLDQ<T>::front() const {
