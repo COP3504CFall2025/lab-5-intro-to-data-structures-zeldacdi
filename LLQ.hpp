@@ -33,7 +33,8 @@ public:
 
 template<typename T>
 LLQ<T>::LLQ() {
-    list = new LinkedList<T>;
+    LinkedList<T> l;
+    list = l;
 }
 
 template<typename T>
@@ -43,7 +44,7 @@ T LLQ<T>::peek() const {
 
 template<typename T>
 void LLQ<T>::enqueue(const T& item) {
-    list.addTail(item);
+    list.AddTail(item);
 }
 
 template<typename T>

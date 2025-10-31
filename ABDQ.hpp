@@ -157,11 +157,17 @@ void ABDQ<T>::ensureCapacity() {
 
 template<typename T>
 const T& ABDQ<T>::front() const {
+    if (size_ == 0) {
+        throw std::runtime_error("Array is empty!");
+    }
     return data_[front_];
 }
 
 template<typename T>
 const T& ABDQ<T>::back() const {
+    if (size_ == 0) {
+        throw std::runtime_error("Array is empty!");
+    }
     return data_[back_];
 }
 
@@ -218,7 +224,7 @@ void ABDQ<T>::pushBack(const T& item) {
 template<typename T>
 T ABDQ<T>::popFront() {
     if (size_ == 0) {
-        throw std::out_of_range("Array is already empty!");
+        throw std::runtime_error("Array is already empty!");
     }
     T deletedItem = front();
 
@@ -231,7 +237,7 @@ T ABDQ<T>::popFront() {
 template<typename T>
 T ABDQ<T>::popBack() {
     if (size_ == 0) {
-        throw std::out_of_range("Array is already empty!");
+        throw std::runtime_error("Array is already empty!");
     }
     T deletedItem = back();
 

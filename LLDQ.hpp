@@ -15,7 +15,7 @@ private:
 
 public:
     // Constructor
-    LLDQ();
+    LLDQ() = default;
 
     // Core Insertion Operations
     void pushFront(const T& item) override;
@@ -35,12 +35,9 @@ public:
     void PrintForward();
 
     void PrintReverse();
-};
 
-template<typename T>
-LLDQ<T>::LLDQ() {
-    list = new LinkedList<T>;
-}
+    ~LLDQ() override = default;
+};
 
 template<typename T>
 const T& LLDQ<T>::front() const {
@@ -54,25 +51,25 @@ const T& LLDQ<T>::back() const {
 
 template<typename T>
 void LLDQ<T>::pushFront(const T& item) {
-    list.addHead(item);
+    list.AddHead(item);
 }
 
 template<typename T>
 void LLDQ<T>::pushBack(const T& item) {
-    list.addTail(item);
+    list.AddTail(item);
 }
 
 template<typename T>
 T LLDQ<T>::popFront() {
     T item = front();
-    list.removeHead();
+    list.RemoveHead();
     return item;
 }
 
 template<typename T>
 T LLDQ<T>::popBack() {
     T item = back();
-    list.removeTail();
+    list.RemoveTail();
     return item;
 }
 
