@@ -184,12 +184,12 @@ void LinkedList<T>::clear() {
 		return;
 	}
 	Node<T>* current = head;
-	while (current != nullptr) {
+	while (count != 0) {
 		Node<T>* tempNext = current->next;
 		delete current;
+		count--;
 		current = tempNext;
 	}
-	count = 0;
 }
 
 template <typename T>
@@ -197,6 +197,7 @@ LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>&& other) noexcept {
 	if (this == &other) {
 		return *this;
 	}
+	clear();
 	head = other.head;
 	tail = other.tail;
 	count = other.count;
@@ -212,11 +213,12 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
 	if (this == &rhs) {
 		return *this;
 	}
+	clear();
 	head = nullptr;
 	tail = nullptr;
 	Node<T>* currNode = const_cast<Node<T>*>(rhs.getHead());
 	count = 0;
-	while (currNode != nullptr) {
+	while (count != rhs.getCount()) {
 		addTail(currNode->data);
 		currNode = currNode->next;
 	}
