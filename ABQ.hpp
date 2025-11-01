@@ -165,8 +165,8 @@ T ABQ<T>::dequeue() {
     }
     T deletedElement = array_[0];
 
-    if (curr_size_ - 1 <= capacity_ / 2 && capacity_ > 1) {
-        capacity_ /= 2;
+    while (curr_size_ - 1 <= capacity_ / scale_factor_ && !(curr_size_ / scale_factor_  < 1)) {
+        capacity_ /= scale_factor_;
     }
 
     T* tempArr = new T[capacity_];
